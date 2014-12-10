@@ -21,6 +21,10 @@
     <div ng-show="score > 0" style="float:left;">
       <strong>Score:</strong> {{score}}
     </div>
+    <br>
+     <div style="float:left;">
+      <strong>Timer:</strong> {{timer}}
+    </div>
     <ul id='question-list'>
       <li ng-repeat="question in quiz | orderBy:'difficulty'">
           <strong>{{$index+1}}. {{question.q}}</strong>
