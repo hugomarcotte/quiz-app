@@ -48,19 +48,21 @@ angular.module('quizApp')
         alert("+5!!!");
       }
     };
-
     $scope.timer = 10;
 
     var setTimer = function(interval) {
-     var timeDone = $interval(function() {
-                $scope.timer --;
+    $interval(function() {
+       $scope.timer --;
+
      }, 1000);
 
-       $timeout(function() {
-         $interval.cancel(timeDone);
-       }, 1000);
     };
-       setTimer();
+    $scope.$watch('timer', function(newvalue, oldvalue){
+      if (newvalue === 0) {
+        $scope.gameStarted = false;
+      }
+    })
+
 
 
     $scope.addQuestion = function() {
@@ -81,4 +83,10 @@ angular.module('quizApp')
       console.log(newQuestion);
 
     };
+
+      $scope.gameStarted = false;
+    $scope.start= function() {
+      $scope.gameStarted = true;
+       setTimer();
+    }
   });

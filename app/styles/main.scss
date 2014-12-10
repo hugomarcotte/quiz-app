@@ -71,7 +71,7 @@
 //   .container {
 //     max-width: 730px;
 //   }
-// 
+//
 //   /* Remove the padding we set earlier */
 //   .header,
 //   .marketing,
@@ -101,6 +101,9 @@ ul {
   list-style-type: none;
 }
 
+.hideByDefault{
+    display: none;
+}
 .question {
   text-align: center;
   margin: 20px;
