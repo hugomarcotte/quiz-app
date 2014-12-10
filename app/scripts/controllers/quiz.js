@@ -10,8 +10,6 @@
 angular.module('quizApp')
   .controller('QuizCtrl',  function ($scope, $timeout, $interval) {
 
-
-
     $scope.quiz = [
       {
         "q": "Who is the best ping pong player at FSA?",
@@ -40,30 +38,27 @@ angular.module('quizApp')
 
 
     $scope.score = 0;
-    $scope.submit = function() {
-
-      if(this.question.input === this.question.answer) {
-
-        $scope.score += 5;
-        alert("+5!!!");
-      }
-    };
     $scope.timer = 10;
 
+    var interval;
     var setTimer = function(interval) {
-    $interval(function() {
-       $scope.timer --;
-
-     }, 1000);
-
+      interval = $interval(function() {
+        $scope.timer --;
+      }, 1000);
     };
+
     $scope.$watch('timer', function(newvalue, oldvalue){
       if (newvalue === 0) {
         $scope.gameStarted = false;
+        $interval.cancel(interval);
+
       }
-    })
+    });
 
 
+    $scope.$on('scoreChanged', function(event, data){
+      $scope.score += data;
+    });
 
     $scope.addQuestion = function() {
 
@@ -86,6 +81,7 @@ angular.module('quizApp')
 
       $scope.gameStarted = false;
     $scope.start= function() {
+      $scope.score = 0;
       $scope.gameStarted = true;
        setTimer();
     }
