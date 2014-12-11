@@ -49,11 +49,11 @@ angular.module('quizApp')
     };
 
     $scope.$watch('timer', function(newvalue, oldvalue){
-      if (newvalue === 0) {
-        $scope.gameStarted = false;
-        $interval.cancel(interval);
-
-      }
+      // if (newvalue === 0) {
+      //   $scope.gameStarted = false;
+      //   $interval.cancel(interval);
+      //
+      // }
     });
 
 
@@ -61,24 +61,11 @@ angular.module('quizApp')
       $scope.score += data;
     });
 
-    $scope.addQuestion = function() {
+    $scope.$on('addQuestion', function(event, data){
+      $scope.quiz.push(data);
+    });
 
-      var newQuestion = {},
-          optionArray = [];
 
-      newQuestion.q = this.txtNewQuestion;
-      optionArray.push({'value': this.txtOption1 });
-      optionArray.push({'value': this.txtOption2 });
-      optionArray.push({'value': this.txtOption3 });
-      optionArray.push({'value': this.txtOption4 });
-      newQuestion.options = optionArray;
-      newQuestion.answer = this.radioInput;
-      newQuestion.difficulty = this.difficultyInput;
-
-      $scope.quiz.push(newQuestion);
-      console.log(newQuestion);
-
-    };
 
       $scope.gameStarted = false;
     $scope.start= function() {
@@ -87,4 +74,6 @@ angular.module('quizApp')
       $scope.gameStarted = true;
        setTimer();
     }
+
+
   });
