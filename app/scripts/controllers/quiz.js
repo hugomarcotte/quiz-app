@@ -38,12 +38,13 @@ angular.module('quizApp')
 
 
     $scope.score = 0;
-    $scope.timer = 10;
+    $scope.timer = 15;
 
     var interval;
     var setTimer = function(interval) {
       interval = $interval(function() {
         $scope.timer --;
+
       }, 1000);
     };
 
@@ -82,6 +83,7 @@ angular.module('quizApp')
       $scope.gameStarted = false;
     $scope.start= function() {
       $scope.score = 0;
+
       $scope.gameStarted = true;
        setTimer();
     }

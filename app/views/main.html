@@ -14,9 +14,11 @@
     </div><!--/.nav-collapse -->
   </div>
 </div>
-
 <div ng-controller="QuizCtrl as quiz">
-  <button ng-hide='gameStarted' class="btn btn-primary" ng-click="start()">Start Quiz!</button>
+  <div ng-hide='gameStarted' class="jumbotron">
+    <h2>Click on the magical button to start the quiz!</h2>
+  <button  class="btn btn-primary btn-lg" ng-click="start()">Start Quiz!</button>
+  </div>
   <div ng-show='gameStarted' class="container">
     <div class="jumbotron question">
       <div style="float:left;">
